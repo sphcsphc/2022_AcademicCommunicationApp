@@ -170,14 +170,15 @@ class Catalog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          actions: [
-            IconButton(
-                icon: Icon(Icons.arrow_back_ios_new),
-                onPressed: (){
-                  Navigator.pop(context);
-                }
-            )
-          ]
+        title: Text('바로가기'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.arrow_back_ios_new),
+              onPressed: (){
+                Navigator.pop(context);
+              }
+          )
+        ]
       ),
       body: CatalogBody(),
     );
@@ -189,51 +190,73 @@ class CatalogBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-        children : [
-          Flexible( child: Container(color: Colors.white), flex : 2 ),
-          Flexible( child: Column(
+    return Column(
+      children : [
+        Container(
+          width : 350, height : 150,
+          margin: EdgeInsets.all(30),
+          padding: EdgeInsets.fromLTRB(20, 20, 30, 40),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: Colors.black12, width: 2)
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Text('- 문제'),
-                    TextButton(onPressed: (){
-                      context.read<StoreAboutData>().nameLogic();
-                      context.read<StoreAboutTab>().goTest();
-                      showDialog(
+              Row(
+                children: [
+                  Icon(Icons.power),
+                  TextButton(onPressed: (){
+                    context.read<StoreAboutData>().nameLogic();
+                    context.read<StoreAboutTab>().goTest();
+                    showDialog(
                         context: context,
                         builder: (context){ return SetChapter(); }
-                      );
-                    }, child: Text('     논리회로')),
-                    TextButton(onPressed: (){
-                      context.read<StoreAboutData>().nameElectric();
-                      context.read<StoreAboutTab>().goTest();
-                      showDialog(
-                          context: context,
-                          builder: (context){ return SetChapter(); }
-                      );
-                    }, child: Text('     전자회로')),
-                  ],
-                ),
+                    );
+                  }, child: Text('논리회로')),
+                ],
               ),
-              Container(
-                margin: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Text('- 게시판'),
-                    TextButton(onPressed: (){
-                      context.read<StoreAboutData>().nameRequest();
-                      context.read<StoreAboutTab>().goRequest();
-                      Navigator.pop(context);
-                    }, child: Text('     질문게시판')),
-                  ],
-                ),
+              Row(
+                children: [
+                  Icon(Icons.cable),
+                  TextButton(onPressed: (){
+                    context.read<StoreAboutData>().nameElectric();
+                    context.read<StoreAboutTab>().goTest();
+                    showDialog(
+                        context: context,
+                        builder: (context){ return SetChapter(); }
+                    );
+                  }, child: Text('전자회로')),
+                ],
               ),
             ],
-          ), flex : 1 ),
-        ]
+          )
+        ),
+        Container(
+          width : 350, height : 150,
+          margin: EdgeInsets.all(30),
+          padding: EdgeInsets.fromLTRB(20, 20, 30, 40),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(color: Colors.black12, width: 2)
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.question_answer),
+                  TextButton(onPressed: (){
+                    context.read<StoreAboutData>().nameRequest();
+                    context.read<StoreAboutTab>().goRequest();
+                    Navigator.pop(context);
+                  }, child: Text('질문게시판')),
+                ],
+              )
+            ],
+          ),
+        ),
+      ]
     );
   }
 }
