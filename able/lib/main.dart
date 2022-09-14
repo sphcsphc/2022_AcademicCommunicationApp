@@ -158,7 +158,11 @@ class _MyAppState extends State<MyApp> {
           }
         })],
       ),
-      body: [Home(), Test(), Request()][context.watch<StoreAboutTab>().tab],
+      body: ListView(
+        children: [
+          [Home(), Test(), Request()][context.watch<StoreAboutTab>().tab],
+        ],
+      )
     );
   }
 }
@@ -180,7 +184,11 @@ class Catalog extends StatelessWidget {
           )
         ]
       ),
-      body: CatalogBody(),
+      body: ListView(
+        children: const [
+          CatalogBody(),
+        ]
+      )
     );
   }
 }
@@ -271,6 +279,7 @@ class SetChapter extends StatelessWidget {
       actions: [
         Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(onPressed: (){
                 context.read<StoreAboutData>().chOne();
@@ -346,8 +355,8 @@ class ShowProblem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['problem'].runtimeType == String
-            ? Image.network(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['problem'])
-            : Image.file(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['problem']),
+          ? Image.network(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['problem'])
+          : Image.file(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['problem']),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -358,8 +367,14 @@ class ShowProblem extends StatelessWidget {
                 }, child: Text('이전')),
             ElevatedButton(onPressed: (){
               showDialog(
-                  context: context,
-                  builder: (context){ return ShowSolve(); }
+                context: context,
+                builder: (context){ 
+                  return ListView(
+                    children: const [
+                      ShowSolve(); 
+                    ]
+                  );
+                }
               );
             }, child: Text('정답보기')),
             context.watch<StoreAboutData>().page == context.watch<StoreAboutData>().data.length - 1
@@ -383,8 +398,8 @@ class ShowSolve extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution'].runtimeType == String
-        ? Image.network(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution'])
-        : Image.file(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution']),
+          ? Image.network(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution'])
+          : Image.file(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution']),
         RawMaterialButton(
           onPressed: (){ Navigator.pop(context); },
           elevation: 2.0,
