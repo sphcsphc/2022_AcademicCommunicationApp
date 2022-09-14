@@ -395,7 +395,6 @@ class ShowSolve extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution'].runtimeType == String
           ? Image.network(context.watch<StoreAboutData>().data[context.watch<StoreAboutData>().page]['solution'])
