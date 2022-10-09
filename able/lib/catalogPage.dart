@@ -55,7 +55,7 @@ class ShowCatalogBody extends StatelessWidget {
                     context.read<variable.StoreAboutTab>().goTest();
                     showDialog(
                         context: context,
-                        builder: (context){ return SetChapter(); }
+                        builder: (context){ return SetLogicChapter(); }
                     );
                   }, child: Text('논리회로')),
                 ],
@@ -68,7 +68,7 @@ class ShowCatalogBody extends StatelessWidget {
                     context.read<variable.StoreAboutTab>().goTest();
                     showDialog(
                         context: context,
-                        builder: (context){ return SetChapter(); }
+                        builder: (context){ return SetElectricChapter(); }
                     );
                   }, child: Text('전자회로')),
                 ],
@@ -105,8 +105,8 @@ class ShowCatalogBody extends StatelessWidget {
   }
 }
 
-class SetChapter extends StatelessWidget {
-  const SetChapter({Key? key}) : super(key: key);
+class SetLogicChapter extends StatelessWidget {
+  const SetLogicChapter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +119,7 @@ class SetChapter extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chOne();
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => main.MyApp()));
@@ -127,36 +128,86 @@ class SetChapter extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chTwo();
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => main.MyApp()));
                 },
-                child:
-                  context.read<variable.StoreAboutData>().name == '논리회로'
-                    ? Text('2')
-                    : Text('3')
+                child: Text('2')
               ),
               ElevatedButton(
                 onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chThree();
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => main.MyApp()));
                 },
-                child:
-                  context.read<variable.StoreAboutData>().name == '논리회로'
-                    ? Text('3')
-                    : Text('4')
+                child: Text('3')
               ),
               ElevatedButton(
                 onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chFour();
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => main.MyApp()));
                 },
-                child:
-                  context.read<variable.StoreAboutData>().name == '논리회로'
-                    ? Text('4')
-                    : Text('5')
+                child: Text('4')
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class SetElectricChapter extends StatelessWidget {
+  const SetElectricChapter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      content: Text('몇장 볼꺼야?'),
+      actions: [
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                  onPressed: (){
+                    context.read<variable.StoreAboutData>().resetClick();
+                    context.read<variable.StoreAboutData>().chOne();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => main.MyApp()));
+                  },
+                  child: Text('1')
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    context.read<variable.StoreAboutData>().resetClick();
+                    context.read<variable.StoreAboutData>().chTwo();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => main.MyApp()));
+                  },
+                  child: Text('3')
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    context.read<variable.StoreAboutData>().resetClick();
+                    context.read<variable.StoreAboutData>().chThree();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => main.MyApp()));
+                  },
+                  child: Text('4')
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    context.read<variable.StoreAboutData>().resetClick();
+                    context.read<variable.StoreAboutData>().chFour();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => main.MyApp()));
+                  },
+                  child: Text('5')
               ),
             ],
           ),
