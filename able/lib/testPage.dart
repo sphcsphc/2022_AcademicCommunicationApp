@@ -26,13 +26,21 @@ class ShowProblem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ProIsText'] == 'True'
-          ? Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
-          : Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem']),
+        Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem']),
+        Center(
+          child:
+            context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ProHasImg'] == 'True'
+              ? Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['picture'])
+              : Container()
+        ),
         ShowDistractor(num: 1),
         ShowDistractor(num: 2),
-        ShowDistractor(num: 3),
-        ShowDistractor(num: 4),
+        context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['3'] == 'False'
+          ? Container()
+          : ShowDistractor(num: 3),
+        context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['4'] == 'False'
+          ? Container()
+          : ShowDistractor(num: 4),
         ShowProblemBottom()
       ]
     );
@@ -46,16 +54,28 @@ class ShowDistractor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         RawMaterialButton(
-          onPressed: (){},
-          fillColor: Colors.white,
-          child: Text(num.toString()),
+          onPressed: (){
+            context.read<variable.StoreAboutData>().setClick(num);
+          },
+          constraints: BoxConstraints(maxHeight: 50, maxWidth: 50, minHeight: 20, minWidth: 20),
+          fillColor: 
+            context.watch<variable.StoreAboutData>().isClick[num] == 0
+              ? Colors.white
+              : context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['answer'] == num
+                ? Colors.lightGreen
+                : Colors.pinkAccent,
+          child: 
+            context.watch<variable.StoreAboutData>().isClick[num] == 0
+              ? Text(num.toString())
+              : context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['answer'] == num
+                ? Text('O')
+                : Text('X'),
           shape: CircleBorder(),
         ),
-        context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ExaIsText'] == 'True'
-          ? Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
-          : Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
+        Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
       ],
     );
   }
@@ -72,6 +92,7 @@ class ShowProblemBottom extends StatelessWidget {
         context.watch<variable.StoreAboutData>().page == 0
           ? Text('처음')
           : ElevatedButton(onPressed: (){
+            context.read<variable.StoreAboutData>().resetClick();
             context.read<variable.StoreAboutData>().previousPage();
           }, child: Text('이전')),
         ElevatedButton(onPressed: (){
@@ -85,6 +106,7 @@ class ShowProblemBottom extends StatelessWidget {
         context.watch<variable.StoreAboutData>().page == context.watch<variable.StoreAboutData>().data.length - 1
           ? Text('마지막')
           : ElevatedButton(onPressed: (){
+            context.read<variable.StoreAboutData>().resetClick();
             context.read<variable.StoreAboutData>().nextPage();
           }, child: Text('다음')),
       ],
@@ -101,9 +123,7 @@ class ShowSolve extends StatelessWidget {
       children: [
         Column(
           children: [
-            context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution'].runtimeType == String
-              ? Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution'])
-              : Image.file(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution']),
+            Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution']),
             RawMaterialButton(
               onPressed: (){ Navigator.pop(context); },
               elevation: 2.0,
