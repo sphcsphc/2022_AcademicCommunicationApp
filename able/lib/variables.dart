@@ -7,6 +7,7 @@ class StoreAboutData extends ChangeNotifier {
   var data = [];
   var ch = 1;
   var page = 0;
+  var isClick = [0, 0, 0, 0, 0];
 
   nameHome() {
     name = '비에이블투';
@@ -34,22 +35,22 @@ class StoreAboutData extends ChangeNotifier {
     if (ch == 1) {
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch01/ch01.json') )
-          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric/ch01/ch01.json') );
+          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric_circuit/ch01/ch01.json') );
     }
     if (ch == 2) {
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch02/ch02.json') )
-          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric/ch03/ch03.json') );
+          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric_circuit/ch03/ch03.json') );
     }
     if (ch == 3) {
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch03/ch03.json') )
-          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric/ch04/ch04.json') );
+          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric_circuit/ch04/ch04.json') );
     }
     if (ch == 4) {
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch04/ch04.json') )
-          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric/ch05/ch05.json') );
+          : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electric_circuit/ch05/ch05.json') );
     }
     chData_ = jsonDecode(chData.body);
     data = chData_;
@@ -80,6 +81,15 @@ class StoreAboutData extends ChangeNotifier {
   }
   nextPage() {
     page++;
+    notifyListeners();
+  }
+
+  setClick(i) {
+    isClick[i] = 1;
+    notifyListeners();
+  }
+  resetClick() {
+    isClick = [0, 0, 0, 0, 0];
     notifyListeners();
   }
 }
