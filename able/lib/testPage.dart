@@ -26,7 +26,12 @@ class ShowProblem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem']),
+        Row(
+          children: [
+            Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}."),
+            Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
+          ],
+        ),
         Center(
           child:
             context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ProHasImg'] == 'True'
@@ -76,7 +81,7 @@ class ShowDistractor extends StatelessWidget {
           shape: CircleBorder(),
         ),
         Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
-      ],
+      ]
     );
   }
 }
@@ -91,25 +96,34 @@ class ShowProblemBottom extends StatelessWidget {
       children: [
         context.watch<variable.StoreAboutData>().page == 0
           ? Text('처음')
-          : ElevatedButton(onPressed: (){
-            context.read<variable.StoreAboutData>().resetClick();
-            context.read<variable.StoreAboutData>().previousPage();
-          }, child: Text('이전')),
-        ElevatedButton(onPressed: (){
-          showDialog(
-            context: context,
-            builder: (context){
-              return ShowSolve();
-            }
-          );
-        }, child: Text('정답보기')),
+          : ElevatedButton(
+              onPressed: (){
+                context.read<variable.StoreAboutData>().resetClick();
+                context.read<variable.StoreAboutData>().previousPage();
+              }, 
+              child: Text('이전')
+            ),
+        ElevatedButton(
+          onPressed: (){
+            showDialog(
+              context: context,
+              builder: (context){
+                return ShowSolve();
+              }
+            );
+          }, 
+          child: Text('정답보기')
+        ),
         context.watch<variable.StoreAboutData>().page == context.watch<variable.StoreAboutData>().data.length - 1
           ? Text('마지막')
-          : ElevatedButton(onPressed: (){
-            context.read<variable.StoreAboutData>().resetClick();
-            context.read<variable.StoreAboutData>().nextPage();
-          }, child: Text('다음')),
-      ],
+          : ElevatedButton(
+              onPressed: (){
+                context.read<variable.StoreAboutData>().resetClick();
+                context.read<variable.StoreAboutData>().nextPage();
+              }, 
+              child: Text('다음')
+            )
+      ]
     );
   }
 }
@@ -130,11 +144,11 @@ class ShowSolve extends StatelessWidget {
               fillColor: Colors.white,
               child: Icon(Icons.close, size: 15.0),
               padding: EdgeInsets.all(15.0),
-              shape: CircleBorder(),
-            ),
-          ],
+              shape: CircleBorder()
+            )
+          ]
         )
-      ],
+      ]
     );
   }
 }

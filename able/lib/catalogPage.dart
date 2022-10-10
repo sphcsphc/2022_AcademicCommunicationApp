@@ -13,17 +13,17 @@ class ShowCatalog extends StatelessWidget {
           title: Text('바로가기'),
           actions: [
             IconButton(
-                icon: Icon(Icons.arrow_back_ios_new),
-                onPressed: (){
-                  Navigator.pop(context);
-                }
+              icon: Icon(Icons.arrow_back_ios_new),
+              onPressed: (){
+                Navigator.pop(context);
+              }
             )
-          ],
+          ]
         ),
         body: ListView(
-            children: const [
-              ShowCatalogBody()
-            ]
+          children: const [
+            ShowCatalogBody()
+          ]
         )
     );
   }
@@ -50,31 +50,37 @@ class ShowCatalogBody extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.power),
-                  TextButton(onPressed: (){
-                    context.read<variable.StoreAboutData>().nameLogic();
-                    context.read<variable.StoreAboutTab>().goTest();
-                    showDialog(
+                  TextButton(
+                    onPressed: (){
+                      context.read<variable.StoreAboutData>().nameLogic();
+                      context.read<variable.StoreAboutTab>().goTest();
+                      showDialog(
                         context: context,
                         builder: (context){ return SetLogicChapter(); }
-                    );
-                  }, child: Text('논리회로')),
-                ],
+                      );
+                    }, 
+                    child: Text('논리회로')
+                  )
+                ]
               ),
               Row(
                 children: [
                   Icon(Icons.cable),
-                  TextButton(onPressed: (){
-                    context.read<variable.StoreAboutData>().nameElectric();
-                    context.read<variable.StoreAboutTab>().goTest();
-                    showDialog(
+                  TextButton(
+                    onPressed: (){
+                      context.read<variable.StoreAboutData>().nameElectric();
+                      context.read<variable.StoreAboutTab>().goTest();
+                      showDialog(
                         context: context,
                         builder: (context){ return SetElectricChapter(); }
-                    );
-                  }, child: Text('전자회로')),
-                ],
-              ),
-            ],
-          ),
+                      );
+                    }, 
+                    child: Text('전자회로')
+                  )
+                ]
+              )
+            ]
+          )
         ),
         Container(
           width : 350, height : 150,
@@ -90,17 +96,20 @@ class ShowCatalogBody extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.question_answer),
-                  TextButton(onPressed: (){
-                    context.read<variable.StoreAboutData>().nameRequest();
-                    context.read<variable.StoreAboutTab>().goRequest();
-                    Navigator.pop(context);
-                  }, child: Text('질문게시판')),
-                ],
+                  TextButton(
+                    onPressed: (){
+                      context.read<variable.StoreAboutData>().nameRequest();
+                      context.read<variable.StoreAboutTab>().goRequest();
+                      Navigator.pop(context);
+                    }, 
+                    child: Text('질문게시판')
+                  )
+                ]
               )
-            ],
-          ),
-        ),
-      ],
+            ]
+          )
+        )
+      ]
     );
   }
 }
@@ -121,8 +130,12 @@ class SetLogicChapter extends StatelessWidget {
                 onPressed: (){
                   context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chOne();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (BuildContext context) => main.MyApp()));
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
                 },
                 child: Text('1')
               ),
@@ -130,8 +143,12 @@ class SetLogicChapter extends StatelessWidget {
                 onPressed: (){
                   context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chTwo();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (BuildContext context) => main.MyApp()));
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
                 },
                 child: Text('2')
               ),
@@ -139,8 +156,12 @@ class SetLogicChapter extends StatelessWidget {
                 onPressed: (){
                   context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chThree();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (BuildContext context) => main.MyApp()));
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
                 },
                 child: Text('3')
               ),
@@ -148,15 +169,19 @@ class SetLogicChapter extends StatelessWidget {
                 onPressed: (){
                   context.read<variable.StoreAboutData>().resetClick();
                   context.read<variable.StoreAboutData>().chFour();
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (BuildContext context) => main.MyApp()));
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
                 },
                 child: Text('4')
-              ),
-            ],
-          ),
+              )
+            ]
+          )
         )
-      ],
+      ]
     );
   }
 }
@@ -174,45 +199,61 @@ class SetElectricChapter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                  onPressed: (){
-                    context.read<variable.StoreAboutData>().resetClick();
-                    context.read<variable.StoreAboutData>().chOne();
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => main.MyApp()));
-                  },
-                  child: Text('1')
+                onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
+                  context.read<variable.StoreAboutData>().chOne();
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
+                },
+                child: Text('1')
               ),
               ElevatedButton(
-                  onPressed: (){
-                    context.read<variable.StoreAboutData>().resetClick();
-                    context.read<variable.StoreAboutData>().chTwo();
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => main.MyApp()));
-                  },
-                  child: Text('3')
+                onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
+                  context.read<variable.StoreAboutData>().chTwo();
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
+                },
+                child: Text('3')
               ),
               ElevatedButton(
-                  onPressed: (){
-                    context.read<variable.StoreAboutData>().resetClick();
-                    context.read<variable.StoreAboutData>().chThree();
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => main.MyApp()));
-                  },
-                  child: Text('4')
+                onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
+                  context.read<variable.StoreAboutData>().chThree();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
+                },
+                child: Text('4')
               ),
               ElevatedButton(
-                  onPressed: (){
-                    context.read<variable.StoreAboutData>().resetClick();
-                    context.read<variable.StoreAboutData>().chFour();
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (BuildContext context) => main.MyApp()));
-                  },
-                  child: Text('5')
-              ),
-            ],
-          ),
+                onPressed: (){
+                  context.read<variable.StoreAboutData>().resetClick();
+                  context.read<variable.StoreAboutData>().chFour();
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => main.MyApp()
+                    )
+                  );
+                },
+                child: Text('5')
+              )
+            ]
+          )
         )
-      ],
+      ]
     );
   }
 }
