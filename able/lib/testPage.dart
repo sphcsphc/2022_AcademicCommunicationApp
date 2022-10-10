@@ -28,7 +28,7 @@ class ShowProblem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}."),
+            Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}. "),
             Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
           ],
         ),
