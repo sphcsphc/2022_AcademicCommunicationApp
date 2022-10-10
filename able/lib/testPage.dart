@@ -28,7 +28,6 @@ class ShowProblem extends StatelessWidget {
       children: [
         Row(
           children: [
-<<<<<<< HEAD
             Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()} "),
             Flexible(
               child: RichText(
@@ -41,11 +40,6 @@ class ShowProblem extends StatelessWidget {
               )
             )
           ]
-=======
-            Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}. "),
-            Text(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
-          ],
->>>>>>> 68c63ac5fc0aa2786e02f2b44372388165f525e0
         ),
         Center(
           child:
