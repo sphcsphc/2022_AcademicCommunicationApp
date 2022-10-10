@@ -29,15 +29,8 @@ class ShowProblem extends StatelessWidget {
         Row(
           children: [
             Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()} "),
-            Flexible(
-              child: RichText(
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                strutStyle: StrutStyle(fontSize: 18),
-                text: TextSpan(
-                  text:context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem']
-                )
-              )
+            Expanded(
+              child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
             )
           ]
         ),
@@ -89,15 +82,8 @@ class ShowDistractor extends StatelessWidget {
                 : Text('X'),
           shape: CircleBorder(),
         ),
-        Flexible(
-          child: RichText(
-            overflow: TextOverflow.ellipsis,
-            maxLines: 3,
-            strutStyle: StrutStyle(fontSize: 18),
-            text: TextSpan(
-                text: context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()]
-            )
-          )
+        Expanded(
+          child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
         )
       ]
     );
