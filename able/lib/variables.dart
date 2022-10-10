@@ -32,22 +32,22 @@ class StoreAboutData extends ChangeNotifier {
   getData() async {
     var chData;
     var chData_;
-    if (ch == 1) {
+    if (ch == 1){
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch01/ch01.json') )
           : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electronic_circuit/ch01/ch01.json') );
     }
-    if (ch == 2) {
+    if (ch == 2){
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch02/ch02.json') )
           : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electronic_circuit/ch03/ch03.json') );
     }
-    if (ch == 3) {
+    if (ch == 3){
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch03/ch03.json') )
           : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electronic_circuit/ch04/ch04.json') );
     }
-    if (ch == 4) {
+    if (ch == 4){
       name == '논리회로'
           ? chData = await http.get( Uri.parse('https://sphcsphc.github.io/logic_circuit/ch04/ch04.json') )
           : chData = await http.get( Uri.parse('https://sphcsphc.github.io/electronic_circuit/ch05/ch05.json') );
