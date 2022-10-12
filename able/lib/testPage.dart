@@ -39,15 +39,15 @@ class ShowProblem extends StatelessWidget {
           child:
             context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ProHasImg'] == 'True'
               ? Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['picture'])
-              : SizeBox()
+              : SizedBox()
         ),
         ShowDistractor(num: 1),
         ShowDistractor(num: 2),
         context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['3'] == 'False'
-          ? SizeBox()
+          ? SizedBox()
           : ShowDistractor(num: 3),
         context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['4'] == 'False'
-          ? SizeBox()
+          ? SizedBox()
           : ShowDistractor(num: 4),
         ShowProblemBottom()
       ]
