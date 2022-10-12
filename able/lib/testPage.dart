@@ -26,9 +26,10 @@ class ShowProblem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         Row(
           children: [
-            Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()} "),
             Expanded(
               child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
             )
@@ -38,15 +39,15 @@ class ShowProblem extends StatelessWidget {
           child:
             context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['ProHasImg'] == 'True'
               ? Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['picture'])
-              : Container()
+              : SizeBox()
         ),
         ShowDistractor(num: 1),
         ShowDistractor(num: 2),
         context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['3'] == 'False'
-          ? Container()
+          ? SizeBox()
           : ShowDistractor(num: 3),
         context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['4'] == 'False'
-          ? Container()
+          ? SizeBox()
           : ShowDistractor(num: 4),
         ShowProblemBottom()
       ]
