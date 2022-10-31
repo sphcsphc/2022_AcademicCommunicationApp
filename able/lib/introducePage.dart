@@ -140,7 +140,7 @@ class ShowBody extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 140,
+              width: 120,
               height: 80,
               child: tab == 0
                 ? Text("지도교수님")
@@ -155,7 +155,7 @@ class ShowBody extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 140,
+              width: 120,
               height: 80,
               child: tab == 0
                 ? Text("관련 전공과목")
@@ -175,7 +175,7 @@ class ShowBody extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 140,
+              width: 120,
               height: 100,
               child: tab == 0
                 ? Text("연구분야")
