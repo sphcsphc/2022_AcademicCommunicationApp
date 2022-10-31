@@ -10,7 +10,7 @@ class StoreAboutData extends ChangeNotifier {
   var ch = 1;
   var page = 0;
   var isClick = [0, 0, 0, 0, 0];
-  var labName = ['POWER', '전력변환', 'TSD', '로봇틱스', 'N&D'];
+  var labName = ['전력시스탬', '전력변환', 'TSD', '로봇틱스', 'N&D'];
   var clubName = ['날개짓', '윙즈'];
 
   setTab(i) {
@@ -39,8 +39,8 @@ class StoreAboutData extends ChangeNotifier {
     var introData;
     var introData_;
     name == '연구실'
-      ? introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/lab.json') )
-      : introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/club.json') );
+      ? introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/lab/lab.json') )
+      : introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/club/club.json') );
     introData_ = jsonDecode(introData.body);
     data = introData_;
     notifyListeners();

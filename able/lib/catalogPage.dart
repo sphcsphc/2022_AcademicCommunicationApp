@@ -12,7 +12,7 @@ class ShowCatalog extends StatelessWidget {
       appBar: AppBar(
         title: Text('바로가기'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 30),
+          icon: Icon(Icons.arrow_back_ios_new),
           onPressed: (){
             Navigator.pop(context);
           }

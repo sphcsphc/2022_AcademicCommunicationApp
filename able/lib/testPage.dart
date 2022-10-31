@@ -13,7 +13,7 @@ class ShowTestPage extends StatelessWidget {
         child: ShowProblem()
       );
     } else {
-      return Center( child: Text('로딩중') );
+      return Text('로딩중');
     }
   }
 }
@@ -31,7 +31,7 @@ class ShowProblem extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'])
+              child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['problem'] ?? '로딩중')
             )
           ]
         ),
