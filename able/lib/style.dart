@@ -5,7 +5,7 @@ var theme = ThemeData(
     color : Colors.white,
     elevation: 1,
     titleTextStyle: TextStyle(color:Colors.black, fontSize: 25),
-    actionsIconTheme: IconThemeData(color:Colors.black)
+    actionsIconTheme: IconThemeData(color: Colors.black, size: 30)
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(

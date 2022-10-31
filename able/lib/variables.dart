@@ -3,29 +3,23 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class StoreAboutData extends ChangeNotifier {
+  var tab = 0;
+  var names = ['비에이블투', '논리회로', '전자회로', '연구실', '동아리'];
   var name = '비에이블투';
   var data = [];
   var ch = 1;
   var page = 0;
   var isClick = [0, 0, 0, 0, 0];
+  var labName = ['POWER', '전력변환', 'TSD', '로봇틱스', 'N&D'];
+  var clubName = ['날개짓', '윙즈'];
 
-  nameHome() {
-    name = '비에이블투';
+  setTab(i) {
+    tab = i;
     notifyListeners();
   }
 
-  nameLogic() {
-    name = '논리회로';
-    notifyListeners();
-  }
-
-  nameElectric() {
-    name = '전자회로';
-    notifyListeners();
-  }
-
-  nameRequest() {
-    name = '질문게시판';
+  setName(i) {
+    name = names[i];
     notifyListeners();
   }
 
@@ -38,6 +32,17 @@ class StoreAboutData extends ChangeNotifier {
     chData_ = jsonDecode(chData.body);
     data = chData_;
     page = 0;
+    notifyListeners();
+  }
+
+  getIntroduce() async {
+    var introData;
+    var introData_;
+    name == '연구실'
+      ? introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/lab.json') )
+      : introData = await http.get( Uri.parse('https://sphcsphc.github.io/introduce/club.json') );
+    introData_ = jsonDecode(introData.body);
+    data = introData_;
     notifyListeners();
   }
 
@@ -62,25 +67,6 @@ class StoreAboutData extends ChangeNotifier {
   }
   resetClick() {
     isClick = [0, 0, 0, 0, 0];
-    notifyListeners();
-  }
-}
-
-class StoreAboutTab extends ChangeNotifier {
-  var tab = 0;
-
-  goHome() {
-    tab = 0;
-    notifyListeners();
-  }
-
-  goTest() {
-    tab = 1;
-    notifyListeners();
-  }
-
-  goRequest() {
-    tab = 2;
     notifyListeners();
   }
 }
