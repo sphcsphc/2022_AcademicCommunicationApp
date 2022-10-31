@@ -23,11 +23,12 @@ class ShowLabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(100),
+      margin: EdgeInsets.all(50),
       child: Column(
         children: [
+          SizedBox(height: 50),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
               ShowName(num: 0, tab: 0),
               ShowName(num: 1, tab: 0)
@@ -35,7 +36,7 @@ class ShowLabs extends StatelessWidget {
           ),
           SizedBox(height: 50),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
               ShowName(num: 2, tab: 0),
               ShowName(num: 3, tab: 0),
@@ -54,11 +55,12 @@ class ShowClubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(100),
+      margin: EdgeInsets.all(50),
       child: Column(
         children: [
+          SizedBox(height: 50),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
               ShowName(num: 0, tab: 1),
               ShowName(num: 1, tab: 1)
@@ -80,8 +82,8 @@ class ShowName extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: tab == 0
-        ? Text(context.read<variable.StoreAboutData>().labName[num], style: TextStyle(fontSize: 25))
-        : Text(context.read<variable.StoreAboutData>().clubName[num], style: TextStyle(fontSize: 25)),
+        ? Text(context.read<variable.StoreAboutData>().labName[num], style: TextStyle(fontSize: 20))
+        : Text(context.read<variable.StoreAboutData>().clubName[num], style: TextStyle(fontSize: 20)),
       onTap: (){
         Navigator.push(context,
           PageRouteBuilder(
@@ -108,7 +110,7 @@ class ShowScaffold extends StatelessWidget {
           ? Text(context.read<variable.StoreAboutData>().labName[num])
           : Text(context.read<variable.StoreAboutData>().clubName[num]),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 30),
+          icon: Icon(Icons.arrow_back_ios_new),
           onPressed: (){
             Navigator.pop(context);
           }
@@ -146,7 +148,7 @@ class ShowBody extends StatelessWidget {
             ),
             SizedBox(
               height: 80,
-              child: Text(context.read<variable.StoreAboutData>().data[num]['name'])
+              child: Text(context.read<variable.StoreAboutData>().data[num]['name'] ?? '로딩중')
             )
           ]
         ),
@@ -163,12 +165,13 @@ class ShowBody extends StatelessWidget {
               child: SizedBox(
                 height: 80,
                 child: ListView(
-                  children: [Text(context.read<variable.StoreAboutData>().data[num]['info'])]
+                  children: [Text(context.read<variable.StoreAboutData>().data[num]['info'] ?? '로딩중')]
                 )
               )
             )
           ]
         ),
+        SizedBox(height: 10),
         Row(
           children: [
             SizedBox(
@@ -185,6 +188,12 @@ class ShowBody extends StatelessWidget {
               )
             )
           ]
+        ),
+        SizedBox(height: 10),
+        Center(
+          child: context.read<variable.StoreAboutData>().data[num]['picture'] != 'empty'
+            ? Image.network(context.read<variable.StoreAboutData>().data[num]['picture'])
+            : SizedBox()
         )
       ]
     );
@@ -204,7 +213,7 @@ class ShowStudy extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.read<variable.StoreAboutData>().data[num]['study'][i]),
+            Text(context.read<variable.StoreAboutData>().data[num]['study'][i] ?? '로딩중'),
             SizedBox(height: 10)
           ]
         );

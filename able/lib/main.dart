@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: Text(context.watch<variable.StoreAboutData>().name),
         leading: 
           IconButton(
-            icon: Icon(Icons.format_list_bulleted, color: Colors.black, size: 30), 
+            icon: Icon(Icons.format_list_bulleted), 
             onPressed: (){
               Navigator.push(context, PageRouteBuilder(
                 pageBuilder: (c, a1, a2) => catalog.ShowCatalog(),
