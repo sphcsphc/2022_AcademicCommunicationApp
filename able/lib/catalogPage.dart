@@ -11,14 +11,12 @@ class ShowCatalog extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('바로가기'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
-            onPressed: (){
-              Navigator.pop(context);
-            }
-          )
-        ]
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 30),
+          onPressed: (){
+            Navigator.pop(context);
+          }
+        )
       ),
       body: ListView(
         children: const [
@@ -37,9 +35,9 @@ class ShowCatalogBody extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width : 350, height : 150,
-          margin: EdgeInsets.all(30),
-          padding: EdgeInsets.fromLTRB(20, 20, 30, 40),
+          width : 250, height : 150,
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.fromLTRB(20, 20, 30, 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             border: Border.all(color: Colors.black12, width: 2)
@@ -52,8 +50,8 @@ class ShowCatalogBody extends StatelessWidget {
                   Icon(Icons.power),
                   TextButton(
                     onPressed: (){
-                      context.read<variable.StoreAboutData>().nameLogic();
-                      context.read<variable.StoreAboutTab>().goTest();
+                      context.read<variable.StoreAboutData>().setName(1);
+                      context.read<variable.StoreAboutTab>().setTab(1);
                       showDialog(
                         context: context,
                         builder: (context){ return SetChapter(); }
@@ -68,8 +66,8 @@ class ShowCatalogBody extends StatelessWidget {
                   Icon(Icons.cable),
                   TextButton(
                     onPressed: (){
-                      context.read<variable.StoreAboutData>().nameElectric();
-                      context.read<variable.StoreAboutTab>().goTest();
+                      context.read<variable.StoreAboutData>().setName(2);
+                      context.read<variable.StoreAboutTab>().setTab(1);
                       showDialog(
                         context: context,
                         builder: (context){ return SetChapter(); }
@@ -83,9 +81,9 @@ class ShowCatalogBody extends StatelessWidget {
           )
         ),
         Container(
-          width : 350, height : 150,
-          margin: EdgeInsets.all(30),
-          padding: EdgeInsets.fromLTRB(20, 20, 30, 40),
+          width : 250, height : 150,
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.fromLTRB(20, 20, 30, 20),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               border: Border.all(color: Colors.black12, width: 2)
@@ -95,14 +93,29 @@ class ShowCatalogBody extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.question_answer),
+                  Icon(Icons.engineering),
                   TextButton(
                     onPressed: (){
-                      context.read<variable.StoreAboutData>().nameRequest();
-                      context.read<variable.StoreAboutTab>().goRequest();
+                      context.read<variable.StoreAboutData>().setName(3);
+                      context.read<variable.StoreAboutData>().setTab(2);
+                      context.read<variable.StoreAboutData>().getIntroduce();
                       Navigator.pop(context);
                     }, 
-                    child: Text('질문게시판')
+                    child: Text('연구실 소개')
+                  )
+                ]
+              ),
+              Row(
+                children: [
+                  Icon(Icons.groups),
+                  TextButton(
+                    onPressed: (){
+                      context.read<variable.StoreAboutData>().setName(4);
+                      context.read<variable.StoreAboutData>().setTab(2);
+                      context.read<variable.StoreAboutData>().getIntroduce();
+                      Navigator.pop(context);
+                    },
+                    child: Text('동아리 소개')
                   )
                 ]
               )
