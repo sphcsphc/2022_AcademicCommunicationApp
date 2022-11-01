@@ -140,7 +140,7 @@ class ShowBody extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 120,
+              width: 105,
               height: 80,
               child: tab == 0
                 ? Text("지도교수님")
@@ -155,45 +155,48 @@ class ShowBody extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 120,
-              height: 80,
+              width: 105,
+              height: 105,
               child: tab == 0
-                ? Text("관련 전공과목")
+                ? Text("관련전공과목")
                 : Text("동아리 소개")
             ),
             Expanded(
               child: SizedBox(
-                height: 80,
+                height: 105,
                 child: ListView(
-                  children: [Text(context.read<variable.StoreAboutData>().data[num]['info'] ?? '로딩중')]
+                  children: [
+                    Text(context.read<variable.StoreAboutData>().data[num]['info'] ?? '로딩중')
+                  ]
                 )
               )
             )
           ]
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         Row(
           children: [
             SizedBox(
-              width: 120,
-              height: 100,
+              width: 105,
+              height: 105,
               child: tab == 0
                 ? Text("연구분야")
-                : Text("활동 내용")
+                : Text("활동내용")
             ),
             Expanded(
               child: SizedBox(
-                height: 100,
-                child: ShowStudy(num: num, ind: context.read<variable.StoreAboutData>().data[num]['study'].length)
+                height: 105,
+                child: ShowStudy(num: num, ind: context.read<variable.StoreAboutData>().data[num]['study'].length ?? 1)
               )
             )
           ]
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 15),
         Center(
-          child: context.read<variable.StoreAboutData>().data[num]['picture'] != 'empty'
-            ? Image.network(context.read<variable.StoreAboutData>().data[num]['picture'])
-            : SizedBox()
+          child: SizedBox(
+            width: 400,
+            height: 300,
+            child: Image.network(context.read<variable.StoreAboutData>().data[num]['picture'])
         )
       ]
     );
@@ -214,7 +217,7 @@ class ShowStudy extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(context.read<variable.StoreAboutData>().data[num]['study'][i] ?? '로딩중'),
-            SizedBox(height: 10)
+            SizedBox(height: 5)
           ]
         );
       }
