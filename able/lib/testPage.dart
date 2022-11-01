@@ -26,7 +26,7 @@ class ShowProblem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString()}",
+        Text("Q${context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['num'].toString() ?? 0}",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         Row(
           children: [
@@ -49,7 +49,11 @@ class ShowProblem extends StatelessWidget {
         context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['4'] == 'False'
           ? SizeBox()
           : ShowDistractor(num: 4),
-        ShowProblemBottom()
+        ShowProblemBottom(),
+        SizedBox(height: 20),
+        context.read<variable.StoreAboutData>().showSolution == 0
+          ? SizedBox()
+          : Center( child: ShowSolve() )
       ]
     );
   }
@@ -84,7 +88,7 @@ class ShowDistractor extends StatelessWidget {
           shape: CircleBorder(),
         ),
         Expanded(
-          child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()])
+          child: Text( context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page][num.toString()] ?? '로딩중')
         )
       ]
     );
@@ -110,14 +114,11 @@ class ShowProblemBottom extends StatelessWidget {
             ),
         ElevatedButton(
           onPressed: (){
-            showDialog(
-              context: context,
-              builder: (context){
-                return ShowSolve();
-              }
-            );
-          }, 
-          child: Text('정답보기')
+            context.read<variable.StoreAboutData>().isSolveClick();
+          },
+          child: context.read<variable.StoreAboutData>().showSolution == 0
+            ? Text('정답보기')
+            : Text('정답숨김')
         ),
         context.watch<variable.StoreAboutData>().page == context.watch<variable.StoreAboutData>().data.length - 1
           ? Text('마지막')
@@ -126,7 +127,7 @@ class ShowProblemBottom extends StatelessWidget {
                 context.read<variable.StoreAboutData>().resetClick();
                 context.read<variable.StoreAboutData>().nextPage();
               }, 
-              child: Text('다음')
+              child: Text('다음') 
             )
       ]
     );
@@ -138,22 +139,31 @@ class ShowSolve extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
-          children: [
-            Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution']),
-            RawMaterialButton(
-              onPressed: (){ Navigator.pop(context); },
-              elevation: 2.0,
-              fillColor: Colors.white,
-              child: Icon(Icons.close, size: 15.0),
-              padding: EdgeInsets.all(15.0),
-              shape: CircleBorder()
-            )
-          ]
-        )
-      ]
+    return GestureDetector(
+      child: Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution']),
+      onTap: (){
+        Navigator.push(context,
+          PageRouteBuilder(
+            pageBuilder: (c, a1, a2) => ShowSolveCloser(),
+            transitionsBuilder: (c, a1, a2, child) => FadeTransition(opacity: a1, child: child),
+            transitionDuration: Duration(milliseconds: 500)
+          )
+        );
+      }
+    );
+  }
+}
+
+class ShowSolveCloser extends StatelessWidget {
+  const ShowSolveCloser({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Image.network(context.watch<variable.StoreAboutData>().data[context.watch<variable.StoreAboutData>().page]['solution']),
+      onTap: (){
+        Navigator.pop(context);
+      }
     );
   }
 }

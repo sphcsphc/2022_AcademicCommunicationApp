@@ -3,25 +3,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class StoreAboutData extends ChangeNotifier {
-  var tab = 0;
-  var names = ['비에이블투', '논리회로', '전자회로', '연구실', '동아리'];
-  var name = '비에이블투';
   var data = [];
+  var name = '비에이블투';
+  var names = ['비에이블투', '논리회로', '전자회로', '연구실', '동아리'];
+  var labName = ['전력시스탬', '전력변환', 'TSD', '로봇틱스', 'N&D'];
+  var clubName = ['날개짓', '윙즈'];
+  var tab = 0;
   var ch = 1;
   var page = 0;
   var isClick = [0, 0, 0, 0, 0];
-  var labName = ['전력시스탬', '전력변환', 'TSD', '로봇틱스', 'N&D'];
-  var clubName = ['날개짓', '윙즈'];
-
-  setTab(i) {
-    tab = i;
-    notifyListeners();
-  }
-
-  setName(i) {
-    name = names[i];
-    notifyListeners();
-  }
+  var showSolution = 0;
 
   getData() async {
     var chData;
@@ -46,6 +37,16 @@ class StoreAboutData extends ChangeNotifier {
     notifyListeners();
   }
 
+  setName(i) {
+    name = names[i];
+    notifyListeners();
+  }
+
+  setTab(i) {
+    tab = i;
+    notifyListeners();
+  }
+
   setChapter(c) {
     ch = c;
     notifyListeners();
@@ -66,7 +67,15 @@ class StoreAboutData extends ChangeNotifier {
     notifyListeners();
   }
   resetClick() {
+    showSolution = 0;
     isClick = [0, 0, 0, 0, 0];
+    notifyListeners();
+  }
+
+  isSolveClick() {
+    showSolution == 0
+      ? showSolution = 1
+      : showSolution = 0;
     notifyListeners();
   }
 }
