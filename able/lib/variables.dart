@@ -63,7 +63,9 @@ class StoreAboutData extends ChangeNotifier {
   }
 
   setClick(i) {
-    isClick[i] = 1;
+    isClick[i] == 0
+      ? isClick[i] = 1
+      : isClick[i] = 0;
     notifyListeners();
   }
   resetClick() {
